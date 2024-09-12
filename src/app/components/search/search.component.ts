@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
 
 @Component({
   selector: 'app-search',
@@ -23,6 +24,8 @@ export class SearchComponent implements OnInit {
   }
 
   private watchForChanges(): void {
-    this.searchText.valueChanges.subscribe((value) => console.log(value));
+    this.searchText.valueChanges
+      .pipe(debounceTime(2000), distinctUntilChanged())
+      .subscribe((value) => console.log(value));
   }
 }
