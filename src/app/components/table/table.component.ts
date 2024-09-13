@@ -14,5 +14,9 @@ export class TableComponent {
   @Input() data!: PeriodicElement[];
   public displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
 
+  public handleClick(row: any): void {
+    console.log(row);
+  }
+
   constructor() {}
 }
