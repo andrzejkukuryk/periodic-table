@@ -1,5 +1,5 @@
 <div class="container">
-    <app-search></app-search>
-<app-table [data]="data"></app-table>
+    <app-search (searchValue)="filterData($event)"></app-search>
+<app-table [data]="currentData"></app-table>
 <app-spinner [hidden]="!loading"></app-spinner>
 </div>

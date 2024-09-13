@@ -15,7 +15,9 @@ import { PeriodicElement } from '../../models/periodic-element.model';
   providers: [HomeService],
 })
 export class HomeComponent implements OnInit {
-  public data!: PeriodicElement[];
+  public data: PeriodicElement[] = [];
+  public filteredData: PeriodicElement[] = [];
+  public currentData: PeriodicElement[] = [];
 
   public loading: boolean = true;
 
@@ -30,9 +32,23 @@ export class HomeComponent implements OnInit {
     this.homeService.getData().subscribe(
       (elements) => {
         this.data = elements;
+        this.currentData = this.data;
       },
       (error) => console.error(error),
       () => (this.loading = false)
     );
+  }
+
+  public filterData(word: string): void {
+    if (word !== '') {
+      this.filteredData = this.data.filter((element) =>
+        Object.values(element).some((value) =>
+          value.toString().toLowerCase().includes(word)
+        )
+      );
+      this.currentData = this.filteredData;
+    } else {
+      this.currentData = this.data;
+    }
   }
 }
