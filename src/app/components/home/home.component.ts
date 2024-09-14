@@ -19,10 +19,11 @@ import { DialogComponent } from '../dialog/dialog.component';
 export class HomeComponent implements OnInit {
   public data: PeriodicElement[] = [];
   public filteredData: PeriodicElement[] = [];
+  public editedData: PeriodicElement[] = [];
   public currentData: PeriodicElement[] = [];
 
   public loading: boolean = true;
-  private selectedRowIndex!: number;
+  private keyword: string = '';
 
   private dialog = inject(MatDialog);
 
@@ -38,6 +39,7 @@ export class HomeComponent implements OnInit {
       (elements) => {
         this.data = elements;
         this.currentData = this.data;
+        this.editedData = this.data;
       },
       (error) => console.error(error),
       () => (this.loading = false)
@@ -45,20 +47,14 @@ export class HomeComponent implements OnInit {
   }
 
   public filterData(word: string): void {
-    if (word !== '') {
-      this.filteredData = this.data.filter((element) =>
-        Object.values(element).some((value) =>
-          value.toString().toLowerCase().includes(word)
-        )
-      );
-      this.currentData = this.filteredData;
-    } else {
-      this.currentData = this.data;
-    }
+    this.keyword = word;
+    console.log(word);
+
+    this.currentData = this.homeService.filterData(this.editedData, word);
   }
 
-  public setSelectedRowIndex(index: number): void {
-    this.selectedRowIndex = index;
+  private originalRowIndex(element: PeriodicElement): number {
+    return this.editedData.indexOf(element);
   }
 
   public openDialog(data: PeriodicElement): void {
@@ -68,9 +64,13 @@ export class HomeComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result != null) {
-        const editedData = [...this.currentData];
-        editedData[this.selectedRowIndex] = result;
-        this.currentData = editedData;
+        const editedData = [...this.editedData];
+        editedData[this.originalRowIndex(data)] = result;
+        this.currentData = this.homeService.filterData(
+          editedData,
+          this.keyword
+        );
+        this.editedData = editedData;
       }
     });
   }

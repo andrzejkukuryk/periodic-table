@@ -11,5 +11,19 @@ export class HomeService {
     return this.dataProviderService.getData();
   }
 
+  public filterData(
+    elements: PeriodicElement[],
+    word: string
+  ): PeriodicElement[] {
+    if (word !== '') {
+      return elements.filter((element) =>
+        Object.values(element).some((value) =>
+          value.toString().toLowerCase().includes(word)
+        )
+      );
+    }
+    return elements;
+  }
+
   constructor(private dataProviderService: DataProviderService) {}
 }

@@ -3,7 +3,6 @@
   <app-table
     [data]="currentData"
     (selectedRowData)="openDialog($event)"
-    (selectedRowIndex)="setSelectedRowIndex($event)"
   ></app-table>
   <app-spinner [hidden]="!loading"></app-spinner>
 </div>

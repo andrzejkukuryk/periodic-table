@@ -22,15 +22,15 @@ export class SearchComponent implements OnInit {
   @Output() searchValue: EventEmitter<string> = new EventEmitter<string>();
 
   ngOnInit(): void {
-    this.watchForChanges();
+    this.observeForChanges();
   }
 
-  private watchForChanges(): void {
+  private observeForChanges(): void {
     this.searchText.valueChanges
       .pipe(debounceTime(2000), distinctUntilChanged())
       .subscribe((value) => {
         if (value != null) {
-          this.searchValue.next(value);
+          this.searchValue.next(value.trim());
         } else {
           this.searchValue.next('');
         }
