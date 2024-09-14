@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit {
   public currentData: PeriodicElement[] = [];
 
   public loading: boolean = true;
+  private selectedRowIndex!: number;
 
   private dialog = inject(MatDialog);
 
@@ -56,17 +57,21 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  openDialog(data: PeriodicElement): void {
+  public setSelectedRowIndex(index: number): void {
+    this.selectedRowIndex = index;
+  }
+
+  public openDialog(data: PeriodicElement): void {
     const dialogRef = this.dialog.open(DialogComponent, {
-      // data: { name: this.name(), animal: this.animal() },
       data: data,
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
-      // if (result !== undefined) {
-      //   this.animal.set(result);
-      // }
+      if (result != null) {
+        const editedData = [...this.currentData];
+        editedData[this.selectedRowIndex] = result;
+        this.currentData = editedData;
+      }
     });
   }
 }

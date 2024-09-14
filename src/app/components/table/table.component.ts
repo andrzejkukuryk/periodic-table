@@ -13,13 +13,16 @@ import { PeriodicElement } from '../../models/periodic-element.model';
 export class TableComponent {
   @Input() data!: PeriodicElement[];
 
-  @Output() selectedRow: EventEmitter<PeriodicElement> =
+  @Output() selectedRowData: EventEmitter<PeriodicElement> =
     new EventEmitter<PeriodicElement>();
+
+  @Output() selectedRowIndex: EventEmitter<number> = new EventEmitter<number>();
 
   public displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
 
-  public handleClick(row: PeriodicElement): void {
-    this.selectedRow.next(row);
+  public handleClick(row: PeriodicElement, index: number): void {
+    this.selectedRowData.next(row);
+    this.selectedRowIndex.next(index);
   }
 
   constructor() {}

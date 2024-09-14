@@ -1,5 +1,9 @@
 <div class="container">
-    <app-search (searchValue)="filterData($event)"></app-search>
-<app-table [data]="currentData" (selectedRow)="openDialog($event)"></app-table>
-<app-spinner [hidden]="!loading"></app-spinner>
+  <app-search (searchValue)="filterData($event)"></app-search>
+  <app-table
+    [data]="currentData"
+    (selectedRowData)="openDialog($event)"
+    (selectedRowIndex)="setSelectedRowIndex($event)"
+  ></app-table>
+  <app-spinner [hidden]="!loading"></app-spinner>
 </div>
