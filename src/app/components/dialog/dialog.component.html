@@ -1,9 +1,21 @@
-<h2 mat-dialog-title>Hi {{data.name}}</h2>
+<h2 mat-dialog-title>Hi {{ data.name }}</h2>
 <mat-dialog-content>
   <p>Edit:</p>
   <mat-form-field>
+    <mat-label>No.</mat-label>
+    <input matInput [formControl]="formPosition" />
+  </mat-form-field>
+  <mat-form-field>
     <mat-label>Name</mat-label>
-    <input matInput [(ngModel)]="data.name" />
+    <input matInput [formControl]="formName" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Weight</mat-label>
+    <input matInput [formControl]="formWeight" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Symbol</mat-label>
+    <input matInput [formControl]="formSymbol" />
   </mat-form-field>
 </mat-dialog-content>
 <mat-dialog-actions>
