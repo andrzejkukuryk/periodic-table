@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TableComponent } from '../table/table.component';
 import { SpinnerComponent } from '../spinner/spinner.component';
 import { SearchComponent } from '../search/search.component';
 import { HomeService } from './home.service';
 import { PeriodicElement } from '../../models/periodic-element.model';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
   selector: 'app-home',
@@ -20,6 +22,8 @@ export class HomeComponent implements OnInit {
   public currentData: PeriodicElement[] = [];
 
   public loading: boolean = true;
+
+  private dialog = inject(MatDialog);
 
   constructor(private homeService: HomeService) {}
 
@@ -50,5 +54,19 @@ export class HomeComponent implements OnInit {
     } else {
       this.currentData = this.data;
     }
+  }
+
+  openDialog(data: PeriodicElement): void {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      // data: { name: this.name(), animal: this.animal() },
+      data: data,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed');
+      // if (result !== undefined) {
+      //   this.animal.set(result);
+      // }
+    });
   }
 }
