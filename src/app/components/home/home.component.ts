@@ -48,7 +48,6 @@ export class HomeComponent implements OnInit {
 
   public filterData(word: string): void {
     this.keyword = word;
-    console.log(word);
 
     this.currentData = this.homeService.filterData(this.editedData, word);
   }

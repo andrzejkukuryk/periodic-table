@@ -1,21 +1,14 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnInit,
-  inject,
-  model,
-  signal,
-} from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import {
   FormControl,
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
+  Validators,
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import {
   MAT_DIALOG_DATA,
-  MatDialog,
   MatDialogActions,
   MatDialogClose,
   MatDialogContent,
@@ -25,11 +18,13 @@ import {
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { PeriodicElement } from '../../models/periodic-element.model';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-dialog',
   standalone: true,
   imports: [
+    CommonModule,
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
@@ -49,19 +44,14 @@ export class DialogComponent implements OnInit {
 
   public formGroup = new FormGroup({
     position: new FormControl(this.data.position),
-    name: new FormControl(this.data.name),
+    name: new FormControl(this.data.name, Validators.maxLength(20)),
     weight: new FormControl(this.data.weight),
-    symbol: new FormControl(this.data.symbol),
+    symbol: new FormControl(this.data.symbol, Validators.maxLength(5)),
   });
 
   ngOnInit(): void {
     this.observeForChanges();
   }
-
-  // public formPosition = new FormControl(this.data.position);
-  // public formName = new FormControl(this.data.name);
-  // public formWeight = new FormControl(this.data.weight);
-  // public formSymbol = new FormControl(this.data.symbol);
 
   public editedElement: PeriodicElement = { ...this.data };
 
@@ -78,8 +68,13 @@ export class DialogComponent implements OnInit {
     });
   }
 
-  public handleClickSave(): void {
-    console.log(this.editedElement);
+  public isFieldInvalid(fieldName: string): boolean {
+    const nameControl = this.formGroup.get(fieldName);
+    if (nameControl != null) {
+      return nameControl.hasError('maxlength');
+    } else {
+      return false;
+    }
   }
 
   handleClickClose(): void {

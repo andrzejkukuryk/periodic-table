@@ -3,11 +3,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-search',
   standalone: true,
   imports: [
+    CommonModule,
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
@@ -20,6 +22,8 @@ export class SearchComponent implements OnInit {
   public searchText = new FormControl('');
 
   @Output() searchValue: EventEmitter<string> = new EventEmitter<string>();
+
+  public startTimer: boolean = false;
 
   ngOnInit(): void {
     this.observeForChanges();
@@ -34,6 +38,18 @@ export class SearchComponent implements OnInit {
         } else {
           this.searchValue.next('');
         }
+        this.startTimer = false;
       });
+
+    this.searchText.valueChanges.subscribe((value) => {
+      this.resetTimerAnimation();
+    });
+  }
+
+  private resetTimerAnimation(): void {
+    this.startTimer = false;
+    setTimeout(() => {
+      this.startTimer = true;
+    }, 10);
   }
 }
