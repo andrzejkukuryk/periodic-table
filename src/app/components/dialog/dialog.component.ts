@@ -43,9 +43,15 @@ export class DialogComponent implements OnInit {
   public data = inject<PeriodicElement>(MAT_DIALOG_DATA);
 
   public formGroup = new FormGroup({
-    position: new FormControl(this.data.position),
+    position: new FormControl(this.data.position, [
+      Validators.required,
+      Validators.pattern('^[0-9]*$'),
+    ]),
     name: new FormControl(this.data.name, Validators.maxLength(20)),
-    weight: new FormControl(this.data.weight),
+    weight: new FormControl(this.data.weight, [
+      Validators.required,
+      Validators.pattern('[0-9]+(.[0-9]+)?$'),
+    ]),
     symbol: new FormControl(this.data.symbol, Validators.maxLength(5)),
   });
 
@@ -68,10 +74,28 @@ export class DialogComponent implements OnInit {
     });
   }
 
-  public isFieldInvalid(fieldName: string): boolean {
+  public isLengthInvalid(fieldName: string): boolean {
     const nameControl = this.formGroup.get(fieldName);
     if (nameControl != null) {
       return nameControl.hasError('maxlength');
+    } else {
+      return false;
+    }
+  }
+
+  public isTypeInvalid(fieldName: string): boolean {
+    const nameControl = this.formGroup.get(fieldName);
+    if (nameControl != null) {
+      return nameControl.hasError('pattern');
+    } else {
+      return false;
+    }
+  }
+
+  public isRequired(fieldName: string): boolean {
+    const nameControl = this.formGroup.get(fieldName);
+    if (nameControl != null) {
+      return nameControl.hasError('required') && nameControl.touched;
     } else {
       return false;
     }

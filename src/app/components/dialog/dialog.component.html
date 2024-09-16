@@ -4,23 +4,35 @@
     <mat-form-field>
       <mat-label>No.</mat-label>
       <input matInput formControlName="position" />
+      <div >
+        <small *ngIf="isTypeInvalid('position')">Must be a number</small>
+      </div>
+      <div >
+        <small *ngIf="isRequired('position')">Field required</small>
+      </div>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Name</mat-label>
       <input matInput formControlName="name" />
       <div >
-        <small *ngIf="isFieldInvalid('name')">Max 20 letters</small>
+        <small *ngIf="isLengthInvalid('name')">Max 20 letters</small>
       </div>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Weight</mat-label>
       <input matInput formControlName="weight" />
+      <div >
+        <small *ngIf="isTypeInvalid('weight')">Must be a number</small>
+      </div>
+      <div >
+        <small *ngIf="isRequired('weight')">Field required</small>
+      </div>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Symbol</mat-label>
       <input matInput formControlName="symbol" />
       <div >
-        <small *ngIf="isFieldInvalid('symbol')">Max 5 letters</small>
+        <small *ngIf="isLengthInvalid('symbol')">Max 5 letters</small>
       </div>
     </mat-form-field>
   </form>
