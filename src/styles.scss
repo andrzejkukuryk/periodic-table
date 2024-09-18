@@ -1,4 +1,63 @@
-/* You can add global styles to this file, and also import other style files */
+@import "./colors.scss";
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.mat-typography {
+  background-color: $color-background;
+  max-width: 1024px;
+  margin: 36px auto;
+  color: $color-accent;
+}
+
+.mdc-text-field {
+  border-radius: 0 !important;
+
+  label {
+    color: $color-accent !important;
+  }
+}
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: $color-secondary !important;
+}
+
+.mdc-data-table__cell {
+  color: $color-accent; 
+  font-size: 24px;
+} 
+.mdc-data-table__header-cell {
+  background-color: $color-primary !important;
+  color: $color-secondary; 
+  font-size: 24px;
+}
+
+table {
+ box-shadow: 0px 1px 10px -3px rgba(66, 68, 90, 1) !important;
+  border: solid 2px $color-primary !important;
+}
+
+tbody {
+  background-color: $color-secondary !important;
+}
+
+.mat-mdc-dialog-surface {
+  background-color: $color-background !important;
+  border-radius: 0 !important;
+  box-shadow: 0px 1px 10px -3px rgba(66, 68, 90, 1) !important;
+  border: solid 2px $color-primary !important;
+
+  p {
+    font-size: 24px;
+    color: $color-accent;
+  }
+
+  .mat-mdc-button .mat-mdc-button-persistent-ripple {
+    border-radius: 0;
+  }
+
+  .mdc-button__label {
+    color: $color-accent !important;
+  }
+}
+
+.mat-spinner {
+  --mat-spinner-stroke: #ff5722; /* Nadpisanie koloru za pomocą zmiennej CSS */
+}

@@ -1,0 +1,21 @@
+@import '../../../colors.scss';
+
+mat-form-field {
+    margin: 16px 8px;
+
+    input {
+        border-radius: 0 !important;
+    }
+
+}
+
+.narrow {
+    margin: 16px 8px 1px;
+}
+
+.error-message {
+    background-color: $color-background;
+    height: 15px;
+    margin-left: 24px;
+    font-size: 12px;
+}

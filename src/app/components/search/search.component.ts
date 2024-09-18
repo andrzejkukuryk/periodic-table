@@ -23,6 +23,7 @@ export class SearchComponent implements OnInit {
 
   @Output() searchValue: EventEmitter<string> = new EventEmitter<string>();
 
+  public showTimer: boolean = false;
   public startTimer: boolean = false;
 
   ngOnInit(): void {
@@ -38,6 +39,7 @@ export class SearchComponent implements OnInit {
         } else {
           this.searchValue.next('');
         }
+        this.showTimer = false;
         this.startTimer = false;
       });
 
@@ -47,6 +49,7 @@ export class SearchComponent implements OnInit {
   }
 
   private resetTimerAnimation(): void {
+    this.showTimer = true;
     this.startTimer = false;
     setTimeout(() => {
       this.startTimer = true;
