@@ -47,7 +47,7 @@ export class DialogComponent implements OnInit {
       Validators.required,
       Validators.pattern('^[0-9]*$'),
     ]),
-    name: new FormControl(this.data.name, Validators.maxLength(20)),
+    name: new FormControl(this.data.name, Validators.maxLength(12)),
     weight: new FormControl(this.data.weight, [
       Validators.required,
       Validators.pattern('[0-9]+(.[0-9]+)?$'),

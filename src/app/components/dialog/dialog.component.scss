@@ -1,21 +1,37 @@
-@import '../../../colors.scss';
-
+@import "../../../colors.scss";
+h5 {
+    margin-left: 8px;
+}
 mat-form-field {
-    margin: 16px 8px;
+  margin: 16px 8px;
 
-    input {
-        border-radius: 0 !important;
-    }
-
+  input {
+    border-radius: 0 !important;
+  }
 }
 
 .narrow {
-    margin: 16px 8px 1px;
+  margin: 16px 8px 1px;
 }
 
 .error-message {
-    background-color: $color-background;
-    height: 15px;
-    margin-left: 24px;
-    font-size: 12px;
+  background-color: $color-background;
+  height: 15px;
+  margin-left: 24px;
+  font-size: 12px;
+}
+
+button {
+  color: $color-primary !important;
+}
+
+button.save {
+    background-color: $color-primary !important;
+    color: $color-secondary !important;
+    margin: 0 12px;
+}
+
+button:disabled {
+  color: silver !important;
+  background-color: $color-background !important;
 }

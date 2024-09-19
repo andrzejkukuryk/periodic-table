@@ -40,22 +40,19 @@ tbody {
 
 .mat-mdc-dialog-surface {
   background-color: $color-background !important;
+  padding: 12px 0;
   border-radius: 0 !important;
   box-shadow: 0px 1px 10px -3px rgba(66, 68, 90, 1) !important;
-  border: solid 2px $color-primary !important;
 
   p {
     font-size: 24px;
     color: $color-accent;
   }
 
-  .mat-mdc-button .mat-mdc-button-persistent-ripple {
+  .mat-mdc-button, .mat-mdc-button-persistent-ripple, .mat-mdc-button-ripple {
     border-radius: 0;
   }
 
-  .mdc-button__label {
-    color: $color-accent !important;
-  }
 }
 
 .mat-spinner {

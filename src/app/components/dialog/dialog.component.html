@@ -1,5 +1,5 @@
 <mat-dialog-content>
-  <p>Edit {{data.name}}</p>
+  <h5>Edit {{data.name}}</h5>
   <form [formGroup]="formGroup">
     <div class="form-field-container">
       <mat-form-field [ngClass]="{'narrow': isTypeInvalid('position') || isRequired('position')}">
@@ -19,7 +19,7 @@
         <input matInput formControlName="name" />
       </mat-form-field>
       <div *ngIf="isLengthInvalid('name')" class="error-message">
-        <small >Max 20 letters</small>
+        <small >Max 12 letters</small>
       </div>
     </div>
     <div class="form-field-container">
@@ -46,12 +46,13 @@
   </form>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-button (click)="handleClickClose()">Close</button>
+  <button mat-button [disableRipple]="true" (click)="handleClickClose()">Close</button>
   <button
     mat-button
+    class="save"
+    [disableRipple]="true"
     [disabled]="formGroup.invalid"
     [mat-dialog-close]="editedElement"
-    cdkFocusInitial
   >
     Save
   </button>
