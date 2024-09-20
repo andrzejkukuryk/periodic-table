@@ -1,5 +1,6 @@
 @import "./colors.scss";
 
+
 .mat-typography {
   background-color: $color-background;
   max-width: 1024px;
@@ -55,6 +56,6 @@ tbody {
 
 }
 
-.mat-spinner {
-  --mat-spinner-stroke: #ff5722; /* Nadpisanie koloru za pomocą zmiennej CSS */
+.mdc-circular-progress__indeterminate-circle-graphic {
+  stroke: $color-primary !important;
 }
