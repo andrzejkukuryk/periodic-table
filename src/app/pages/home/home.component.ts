@@ -1,11 +1,11 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TableComponent } from '../table/table.component';
-import { SpinnerComponent } from '../spinner/spinner.component';
-import { SearchComponent } from '../search/search.component';
+import { TableComponent } from '../../components/table/table.component';
+import { SpinnerComponent } from '../../components/spinner/spinner.component';
+import { SearchComponent } from '../../components/search/search.component';
 import { PeriodicElement } from '../../models/periodic-element.model';
 import { MatDialog } from '@angular/material/dialog';
-import { EditDialogComponent } from '../editDialog/edit-dialog.component';
+import { EditDialogComponent } from '../../components/editDialog/edit-dialog.component';
 import { DataProviderService } from 'src/app/fake-api/data-provider.service';
 
 @Component({
