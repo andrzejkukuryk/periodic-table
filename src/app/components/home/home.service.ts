@@ -7,8 +7,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class HomeService {
-  public getData(): Observable<PeriodicElement[]> {
-    return this.dataProviderService.getData();
+  public getData(filterWord: string): Observable<PeriodicElement[]> {
+    return this.dataProviderService.getData(filterWord);
   }
 
   public filterData(

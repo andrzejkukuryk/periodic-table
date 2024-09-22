@@ -30,26 +30,45 @@ export class HomeComponent implements OnInit {
   constructor(private homeService: HomeService) {}
 
   ngOnInit(): void {
-    this.setData();
+    this.getData('');
   }
 
-  private setData(): void {
+  // private setData(): void {
+  //   this.loading = true;
+  //   this.homeService.getData().subscribe(
+  //     (elements) => {
+  //       this.data = elements;
+  //       this.currentData = this.data;
+  //       this.editedData = this.data;
+  //     },
+  //     (error) => console.error(error),
+  //     () => (this.loading = false)
+  //   );
+  // }
+
+  private getData(filter: string): void {
     this.loading = true;
-    this.homeService.getData().subscribe(
-      (elements) => {
-        this.data = elements;
-        this.currentData = this.data;
-        this.editedData = this.data;
+    this.homeService.getData(filter).subscribe(
+      (data) => {
+        // this.data = data;
+        this.currentData = data;
+        // this.editedData = this.data;
       },
       (error) => console.error(error),
       () => (this.loading = false)
     );
   }
 
+  // public filterData(word: string): void {
+  //   this.keyword = word;
+
+  //   this.currentData = this.homeService.filterData(this.editedData, word);
+  // }
+
   public filterData(word: string): void {
     this.keyword = word;
 
-    this.currentData = this.homeService.filterData(this.editedData, word);
+    this.getData(word);
   }
 
   private originalRowIndex(element: PeriodicElement): number {
