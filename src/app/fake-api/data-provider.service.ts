@@ -21,4 +21,12 @@ export class DataProviderService {
     }
     return of(currentData).pipe(delay(1500));
   }
+
+  public editData(orginal: PeriodicElement, edited: PeriodicElement): void {
+    const index = currentData.indexOf(orginal);
+
+    if (index !== -1) {
+      currentData[index] = edited;
+    }
+  }
 }

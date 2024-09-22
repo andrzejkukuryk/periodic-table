@@ -11,6 +11,10 @@ export class HomeService {
     return this.dataProviderService.getData(filterWord);
   }
 
+  public editData(original: PeriodicElement, edited: PeriodicElement) {
+    return this.dataProviderService.editData(original, edited);
+  }
+
   public filterData(
     elements: PeriodicElement[],
     word: string

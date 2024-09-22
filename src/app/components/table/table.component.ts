@@ -18,7 +18,7 @@ export class TableComponent {
 
   public displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
 
-  public handleClick(row: PeriodicElement, index: number): void {
+  public handleClick(row: PeriodicElement): void {
     this.selectedRowData.next(row);
   }
 
