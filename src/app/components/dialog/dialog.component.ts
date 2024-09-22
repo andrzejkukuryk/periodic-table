@@ -66,6 +66,7 @@ export class DialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.markFieldsAsTouched();
+    this.observeForChanges();
   }
 
   public editedElement: PeriodicElement = { ...this.data };
@@ -87,6 +88,19 @@ export class DialogComponent implements OnInit {
           control.markAsTouched();
         }
       });
+    });
+  }
+
+  private observeForChanges(): void {
+    this.formGroup.valueChanges.subscribe((value) => {
+      if (value != null) {
+        this.editedElement.position =
+          value.position != null ? Number(value.position) : 0;
+        this.editedElement.name = value.name != null ? value.name : '';
+        this.editedElement.weight =
+          value.weight != null ? Number(value.weight) : 0;
+        this.editedElement.symbol = value.symbol != null ? value.symbol : '';
+      }
     });
   }
 

@@ -5,6 +5,8 @@ import { Injectable } from '@angular/core';
 
 const currentData: PeriodicElement[] = [...ELEMENT_DATA];
 
+const delayTime = 300 + Math.floor(Math.random() * 1000);
+
 @Injectable({
   providedIn: 'root',
 })
@@ -17,9 +19,9 @@ export class DataProviderService {
         )
       );
 
-      return of(filteredData).pipe(delay(1500));
+      return of(filteredData).pipe(delay(delayTime));
     }
-    return of(currentData).pipe(delay(1500));
+    return of(currentData).pipe(delay(delayTime));
   }
 
   public editData(orginal: PeriodicElement, edited: PeriodicElement): void {

@@ -9,5 +9,3 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
   styleUrl: './spinner.component.scss',
 })
 export class SpinnerComponent {}
-
-///////////////////////////
