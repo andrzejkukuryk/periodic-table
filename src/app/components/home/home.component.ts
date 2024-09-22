@@ -59,15 +59,9 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  // public filterData(word: string): void {
-  //   this.keyword = word;
-
-  //   this.currentData = this.homeService.filterData(this.editedData, word);
-  // }
-
   public filterData(word: string): void {
     this.keyword = word;
-
+    this.currentData = [];
     this.getData(word);
   }
 
