@@ -1,7 +1,7 @@
 <div class="container">
   <app-search (searchValue)="filterData($event)"></app-search>
   <app-table
-    [data]="currentData"
+    [data]="data"
     (selectedRowData)="openDialog($event)"
   ></app-table>
   <app-spinner [hidden]="!loading"></app-spinner>

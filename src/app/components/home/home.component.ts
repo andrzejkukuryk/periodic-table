@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 import { TableComponent } from '../table/table.component';
 import { SpinnerComponent } from '../spinner/spinner.component';
 import { SearchComponent } from '../search/search.component';
-import { HomeService } from './home.service';
 import { PeriodicElement } from '../../models/periodic-element.model';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
+import { DataProviderService } from 'src/app/fake-api/data-provider.service';
 
 @Component({
   selector: 'app-home',
@@ -14,20 +14,16 @@ import { DialogComponent } from '../dialog/dialog.component';
   imports: [CommonModule, TableComponent, SpinnerComponent, SearchComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
-  providers: [HomeService],
 })
 export class HomeComponent implements OnInit {
   public data: PeriodicElement[] = [];
-  public filteredData: PeriodicElement[] = [];
-  public editedData: PeriodicElement[] = [];
-  public currentData: PeriodicElement[] = [];
 
   public loading: boolean = true;
   private keyword: string = '';
 
   private dialog = inject(MatDialog);
 
-  constructor(private homeService: HomeService) {}
+  constructor(private dataProviderService: DataProviderService) {}
 
   ngOnInit(): void {
     this.getData(this.keyword);
@@ -35,13 +31,13 @@ export class HomeComponent implements OnInit {
 
   private getData(filter: string): void {
     this.loading = true;
-    this.currentData = [];
-    this.homeService.getData(filter).subscribe(
+    this.data = [];
+    this.dataProviderService.getData(filter).subscribe(
       (data) => {
-        this.currentData = data;
+        this.data = data;
+        this.loading = false;
       },
-      (error) => console.error(error),
-      () => (this.loading = false)
+      (error) => console.error(error)
     );
   }
 
@@ -57,7 +53,7 @@ export class HomeComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.homeService.editData(data, result);
+        this.dataProviderService.editData(data, result);
         this.getData(this.keyword);
       }
     });
