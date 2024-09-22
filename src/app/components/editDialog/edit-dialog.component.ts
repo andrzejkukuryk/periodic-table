@@ -21,7 +21,7 @@ import { PeriodicElement } from '../../models/periodic-element.model';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-dialog',
+  selector: 'app-edit-dialog',
   standalone: true,
   imports: [
     CommonModule,
@@ -35,11 +35,11 @@ import { CommonModule } from '@angular/common';
     MatDialogClose,
     ReactiveFormsModule,
   ],
-  templateUrl: './dialog.component.html',
-  styleUrl: './dialog.component.scss',
+  templateUrl: './edit-dialog.component.html',
+  styleUrl: './edit-dialog.component.scss',
 })
-export class DialogComponent implements OnInit {
-  public dialogRef = inject(MatDialogRef<DialogComponent>);
+export class EditDialogComponent implements OnInit {
+  public dialogRef = inject(MatDialogRef<EditDialogComponent>);
   public data = inject<PeriodicElement>(MAT_DIALOG_DATA);
 
   public formGroup = new FormGroup({

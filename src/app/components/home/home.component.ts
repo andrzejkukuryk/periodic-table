@@ -5,7 +5,7 @@ import { SpinnerComponent } from '../spinner/spinner.component';
 import { SearchComponent } from '../search/search.component';
 import { PeriodicElement } from '../../models/periodic-element.model';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogComponent } from '../dialog/dialog.component';
+import { EditDialogComponent } from '../editDialog/edit-dialog.component';
 import { DataProviderService } from 'src/app/fake-api/data-provider.service';
 
 @Component({
@@ -47,7 +47,7 @@ export class HomeComponent implements OnInit {
   }
 
   public openDialog(data: PeriodicElement): void {
-    const dialogRef = this.dialog.open(DialogComponent, {
+    const dialogRef = this.dialog.open(EditDialogComponent, {
       data: data,
     });
 
