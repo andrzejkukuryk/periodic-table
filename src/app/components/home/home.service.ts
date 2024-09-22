@@ -15,19 +15,19 @@ export class HomeService {
     return this.dataProviderService.editData(original, edited);
   }
 
-  public filterData(
-    elements: PeriodicElement[],
-    word: string
-  ): PeriodicElement[] {
-    if (word !== '') {
-      return elements.filter((element) =>
-        Object.values(element).some((value) =>
-          value.toString().toLowerCase().includes(word)
-        )
-      );
-    }
-    return elements;
-  }
+  // public filterData(
+  //   elements: PeriodicElement[],
+  //   word: string
+  // ): PeriodicElement[] {
+  //   if (word !== '') {
+  //     return elements.filter((element) =>
+  //       Object.values(element).some((value) =>
+  //         value.toString().toLowerCase().includes(word)
+  //       )
+  //     );
+  //   }
+  //   return elements;
+  // }
 
   constructor(private dataProviderService: DataProviderService) {}
 }

@@ -56,9 +56,11 @@ export class HomeComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      this.homeService.editData(data, result);
-      this.currentData = [];
-      this.getData(this.keyword);
+      if (result) {
+        this.homeService.editData(data, result);
+        this.currentData = [];
+        this.getData(this.keyword);
+      }
     });
   }
 }
