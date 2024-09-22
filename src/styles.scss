@@ -60,3 +60,7 @@ tbody {
 .mdc-circular-progress__indeterminate-circle-graphic {
   stroke: $color-primary !important;
 }
+
+.mdc-line-ripple {
+  display: none !important;
+}

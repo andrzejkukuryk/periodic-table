@@ -1,67 +1,58 @@
 <mat-dialog-content>
   <h5>Edit {{ data.name }}</h5>
   <form [formGroup]="formGroup">
-    <div class="form-field-container">
-      <mat-form-field
-        [ngClass]="{
-          narrow: isTypeInvalid('position') || isRequired('position')
-        }"
-      >
+    <div>
+      <mat-form-field appearance="fill">
         <mat-label>No.</mat-label>
         <input matInput formControlName="position" />
+        <mat-error *ngIf="isInvalid('position','required')">
+          Field required
+        </mat-error>
+        <mat-error *ngIf="isInvalid('position','pattern')">
+          Must be a number
+        </mat-error>
       </mat-form-field>
-      <div *ngIf="isTypeInvalid('position')" class="error-message">
-        <small>Must be a number</small>
-      </div>
-      <div *ngIf="isRequired('position')" class="error-message">
-        <small>Field required</small>
-      </div>
     </div>
-    <div class="form-field-container">
-      <mat-form-field [ngClass]="{ narrow: isLengthInvalid('name') }">
+
+    <div>
+      <mat-form-field appearance="fill">
         <mat-label>Name</mat-label>
         <input matInput formControlName="name" />
+        <mat-error *ngIf="isInvalid('name','maxlength')">
+
+          Max 12 letters
+        </mat-error>
       </mat-form-field>
-      <div *ngIf="isLengthInvalid('name')" class="error-message">
-        <small>Max 12 letters</small>
-      </div>
     </div>
-    <div class="form-field-container">
-      <mat-form-field
-        [ngClass]="{ narrow: isTypeInvalid('weight') || isRequired('weight') }"
-      >
+
+    <div>
+      <mat-form-field appearance="fill">
         <mat-label>Weight</mat-label>
         <input matInput formControlName="weight" />
+        <mat-error *ngIf="isInvalid('weight','required')">
+          Field required
+        </mat-error>
+        <mat-error *ngIf="isInvalid('weight','pattern')">
+          Must be a number
+        </mat-error>
       </mat-form-field>
-      <div *ngIf="isTypeInvalid('weight')" class="error-message">
-        <small>Must be a number</small>
-      </div>
-      <div *ngIf="isRequired('weight')" class="error-message">
-        <small>Field required</small>
-      </div>
     </div>
-    <div class="form-field-container">
-      <mat-form-field [ngClass]="{ narrow: isLengthInvalid('symbol') }">
+
+    <div>
+      <mat-form-field appearance="fill">
         <mat-label>Symbol</mat-label>
         <input matInput formControlName="symbol" />
+        <mat-error *ngIf="isInvalid('symbol','maxlength')">
+          Max 5 letters
+        </mat-error>
       </mat-form-field>
-      <div *ngIf="isLengthInvalid('symbol')" class="error-message">
-        <small>Max 5 letters</small>
-      </div>
     </div>
   </form>
 </mat-dialog-content>
+
 <mat-dialog-actions>
-  <button mat-button [disableRipple]="true" (click)="handleClickClose()">
-    Close
-  </button>
-  <button
-    mat-button
-    class="save"
-    [disableRipple]="true"
-    [disabled]="formGroup.invalid"
-    [mat-dialog-close]="editedElement"
-  >
+  <button mat-button (click)="handleClickClose()">Close</button>
+  <button mat-button class="save" [disabled]="formGroup.invalid" [mat-dialog-close]="editedElement">
     Save
   </button>
 </mat-dialog-actions>

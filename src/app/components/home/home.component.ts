@@ -35,6 +35,7 @@ export class HomeComponent implements OnInit {
 
   private getData(filter: string): void {
     this.loading = true;
+    this.currentData = [];
     this.homeService.getData(filter).subscribe(
       (data) => {
         this.currentData = data;
@@ -46,7 +47,6 @@ export class HomeComponent implements OnInit {
 
   public filterData(word: string): void {
     this.keyword = word;
-    this.currentData = [];
     this.getData(word);
   }
 
@@ -58,7 +58,6 @@ export class HomeComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.homeService.editData(data, result);
-        this.currentData = [];
         this.getData(this.keyword);
       }
     });

@@ -43,62 +43,51 @@ export class DialogComponent implements OnInit {
   public data = inject<PeriodicElement>(MAT_DIALOG_DATA);
 
   public formGroup = new FormGroup({
-    position: new FormControl(this.data.position, [
-      Validators.required,
-      Validators.pattern('^[0-9]*$'),
-    ]),
-    name: new FormControl(this.data.name, Validators.maxLength(12)),
-    weight: new FormControl(this.data.weight, [
-      Validators.required,
-      Validators.pattern('[0-9]+(.[0-9]+)?$'),
-    ]),
-    symbol: new FormControl(this.data.symbol, Validators.maxLength(5)),
+    position: new FormControl(this.data.position, {
+      validators: [Validators.required, Validators.pattern('^[0-9]*$')],
+      updateOn: 'change',
+    }),
+    name: new FormControl(this.data.name, {
+      validators: [Validators.maxLength(12)],
+      updateOn: 'change',
+    }),
+    weight: new FormControl(this.data.weight, {
+      validators: [
+        Validators.required,
+        Validators.pattern('[0-9]+(.[0-9]+)?$'),
+      ],
+      updateOn: 'change',
+    }),
+    symbol: new FormControl(this.data.symbol, {
+      validators: [Validators.maxLength(5)],
+      updateOn: 'change',
+    }),
   });
 
   ngOnInit(): void {
-    this.observeForChanges();
+    this.markFieldsAsTouched();
   }
 
   public editedElement: PeriodicElement = { ...this.data };
 
-  private observeForChanges(): void {
-    this.formGroup.valueChanges.subscribe((value) => {
-      if (value != null) {
-        this.editedElement.position =
-          value.position != null ? Number(value.position) : 0;
-        this.editedElement.name = value.name != null ? value.name : '';
-        this.editedElement.weight =
-          value.weight != null ? Number(value.weight) : 0;
-        this.editedElement.symbol = value.symbol != null ? value.symbol : '';
-      }
+  public isInvalid(fieldName: string, errorType: string): boolean {
+    const nameControl = this.formGroup.get(fieldName);
+    if (nameControl != null) {
+      return nameControl.hasError(errorType);
+    } else {
+      return false;
+    }
+  }
+
+  private markFieldsAsTouched(): void {
+    this.formGroup.valueChanges.subscribe(() => {
+      Object.keys(this.formGroup.controls).forEach((field) => {
+        const control = this.formGroup.get(field);
+        if (control) {
+          control.markAsTouched();
+        }
+      });
     });
-  }
-
-  public isLengthInvalid(fieldName: string): boolean {
-    const nameControl = this.formGroup.get(fieldName);
-    if (nameControl != null) {
-      return nameControl.hasError('maxlength');
-    } else {
-      return false;
-    }
-  }
-
-  public isTypeInvalid(fieldName: string): boolean {
-    const nameControl = this.formGroup.get(fieldName);
-    if (nameControl != null) {
-      return nameControl.hasError('pattern');
-    } else {
-      return false;
-    }
-  }
-
-  public isRequired(fieldName: string): boolean {
-    const nameControl = this.formGroup.get(fieldName);
-    if (nameControl != null) {
-      return nameControl.hasError('required') && nameControl.touched;
-    } else {
-      return false;
-    }
   }
 
   handleClickClose(): void {
