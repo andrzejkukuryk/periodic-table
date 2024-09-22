@@ -1,6 +1,6 @@
 @import "../../../colors.scss";
 h5 {
-    margin-left: 8px;
+  margin-left: 8px;
 }
 mat-form-field {
   margin: 16px 8px;
@@ -26,9 +26,9 @@ button {
 }
 
 button.save {
-    background-color: $color-primary !important;
-    color: $color-secondary !important;
-    margin: 0 12px;
+  background-color: $color-primary !important;
+  color: $color-secondary !important;
+  margin: 0 12px;
 }
 
 button:disabled {

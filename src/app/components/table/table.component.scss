@@ -1,29 +1,29 @@
 @import "../../../colors.scss";
 
 .mat-mdc-row .mat-mdc-cell {
-    border-bottom: 1px solid $color-background;
-    margin-bottom: 1px;
-    border-top: 1px solid transparent;
-    cursor: pointer;
-  }
+  border-bottom: 1px solid $color-background;
+  margin-bottom: 1px;
+  border-top: 1px solid transparent;
+  cursor: pointer;
+}
 
-  .mat-mdc-row:hover .mat-mdc-cell {
-    border-color: $color-primary;
-    border-width: 2px;
-  }
+.mat-mdc-row:hover .mat-mdc-cell {
+  border-color: $color-primary;
+  border-width: 2px;
+}
 
-  .column-1 {
-    width: 15%;
-  }
+.column-1 {
+  width: 15%;
+}
 
-  .column-2 {
-    width: 45%;
-  }
+.column-2 {
+  width: 45%;
+}
 
-  .column-3 {
-    width: 20%;
-  }
+.column-3 {
+  width: 20%;
+}
 
-  .column-4 {
-    width: 20%;
-  }
+.column-4 {
+  width: 20%;
+}

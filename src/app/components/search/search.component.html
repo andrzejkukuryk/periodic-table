@@ -1,12 +1,11 @@
 <form class="search-form">
-    <div>
-      <mat-form-field class="input-field">
-        <input matInput [formControl]="searchText" />
-        <mat-icon matPrefix class="icon">search</mat-icon>
-      </mat-form-field>
-
-      <div
-        [ngClass]="{ placeholder: true, timer: showTimer, start: startTimer }"
-      ></div>
-    </div>
+  <div>
+    <mat-form-field class="input-field">
+      <input matInput [formControl]="searchText" />
+      <mat-icon matPrefix class="icon">search</mat-icon>
+    </mat-form-field>
+    <div
+      [ngClass]="{ placeholder: true, timer: showTimer, start: startTimer }"
+    ></div>
+  </div>
 </form>
